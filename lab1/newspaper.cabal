@@ -1,0 +1,36 @@
+cabal-version:      3.0
+name:               newspaper
+version:            0.1.0.0
+synopsis:           Faculty online newspaper information system
+build-type:         Simple
+
+common shared
+    default-language:   GHC2021
+    default-extensions: OverloadedStrings LambdaCase DerivingStrategies
+    ghc-options:        -Wall -Wcompat -Wincomplete-uni-patterns -Wredundant-constraints
+    build-depends:      base >=4.14 && <5
+                      , text
+                      , time
+                      , mtl
+                      , bytestring
+                      , mysql
+                      , mysql-simple
+
+library
+    import:           shared
+    hs-source-dirs:   src
+    exposed-modules:  Newspaper.Field
+                      Newspaper.Entity
+                      Newspaper.Model
+                      Newspaper.Repository
+                      Newspaper.Report
+                      Newspaper.Console
+                      Newspaper.Crud
+                      Newspaper.Config
+                      Newspaper.App
+
+executable newspaper
+    import:           shared
+    hs-source-dirs:   app
+    main-is:          Main.hs
+    build-depends:    newspaper

@@ -1,0 +1,7 @@
+packages: .
+
+constraints:
+    any.Cabal < 3.14
+
+allow-newer:
+    Cabal:base
