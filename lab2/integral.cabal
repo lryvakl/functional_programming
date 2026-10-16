@@ -1,0 +1,27 @@
+cabal-version:      3.0
+name:               integral
+version:            0.1.0.0
+synopsis:           Parallel definite integral computation with given accuracy
+build-type:         Simple
+
+common shared
+    default-language:   GHC2021
+    default-extensions: DerivingStrategies DeriveAnyClass LambdaCase
+    ghc-options:        -Wall -Wcompat -Wincomplete-uni-patterns -Wredundant-constraints -O2
+    build-depends:      base >=4.14 && <5
+                      , deepseq
+
+library
+    import:           shared
+    hs-source-dirs:   src
+    exposed-modules:  Integral.Quadrature
+                      Integral.Parallel
+                      Integral.Functions
+
+executable integral
+    import:           shared
+    hs-source-dirs:   app
+    main-is:          Main.hs
+    ghc-options:      -threaded -rtsopts "-with-rtsopts=-N"
+    build-depends:    integral
+                    , optparse-applicative
