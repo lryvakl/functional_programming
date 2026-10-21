@@ -1,0 +1,26 @@
+cabal-version:      3.0
+name:               textbook
+version:            0.1.0.0
+synopsis:           Programming textbook text processing
+build-type:         Simple
+
+common shared
+    default-language:   GHC2021
+    default-extensions: LambdaCase DerivingStrategies
+    ghc-options:        -Wall -Wcompat -Wincomplete-uni-patterns -Wredundant-constraints
+    build-depends:      base >=4.14 && <5
+
+library
+    import:           shared
+    hs-source-dirs:   src
+    exposed-modules:  Textbook.Types
+                      Textbook.Render
+                      Textbook.Parser
+                      Textbook.Analysis
+
+executable textbook
+    import:           shared
+    hs-source-dirs:   app
+    main-is:          Main.hs
+    build-depends:    textbook
+                    , optparse-applicative
